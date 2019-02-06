@@ -1,8 +1,10 @@
 @extends('layout')
 
-@section('title', $genre)
+@section('title', 'Tracks')
 
 @section('main')
+<a href="/tracks/new"><button class="btn btn-primary">Add new track</button></a>
+
 <table class="table">
   <tr>
     <th>Track</th>
@@ -27,3 +29,4 @@
   </tr>
   @endforeach
 </table>
+@endsection
