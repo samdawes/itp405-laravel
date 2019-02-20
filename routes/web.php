@@ -10,24 +10,41 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', 'InvoicesController@index');
+Route::middleware(['maintenancemode'])->group(function() {
+  Route::get('/', 'InvoicesController@index');
 
-Route::get('/genres', 'GenresController@index');
+  Route::get('/genres', 'GenresController@index');
 
-Route::get('/tracks', 'TracksController@index');
+  Route::get('/tracks', 'TracksController@index');
 
-Route::get('/tracks/new', 'TracksController@new');
+  Route::get('/tracks/new', 'TracksController@new');
 
-Route::get('/playlists', 'PlaylistController@index');
+  Route::get('/playlists', 'PlaylistController@index');
 
-Route::get('/playlists/new', 'PlaylistController@create');
+  Route::get('/playlists/new', 'PlaylistController@create');
 
-Route::get('/playlists/{id}', 'PlaylistController@index');
+  Route::get('/playlists/{id}', 'PlaylistController@index');
 
-Route::get('/genres/{id}/edit', 'GenresController@edit');
+  Route::get('/genres/{id}/edit', 'GenresController@edit');
 
-Route::post('/playlists', 'PlaylistController@store');
+  Route::post('/playlists', 'PlaylistController@store');
 
-Route::post('/tracks', 'TracksController@store');
+  Route::post('/tracks', 'TracksController@store');
 
-Route::post('/genres', 'GenresController@store');
+  Route::post('/genres', 'GenresController@store');
+
+  Route::get('/signup', 'SignUpController@index');
+  Route::post('/signup', 'SignUpController@signup');
+});
+
+Route::get('/maintenance', 'MaintenanceController@index');
+
+Route::get('/login', 'LoginController@index');
+Route::post('/login', 'LoginController@login');
+Route::get('/logout', 'LoginController@logout');
+
+Route::middleware(['authenticated'])->group(function() {
+  Route::get('/profile', 'AdminController@index');
+  Route::get('/settings', 'SettingsController@index');
+  Route::post('/settings', 'SettingsController@changeSettings');
+});

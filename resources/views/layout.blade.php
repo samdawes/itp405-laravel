@@ -6,9 +6,9 @@
 	<title>@yield('title')</title>
 </head>
 <body>
-	
-	@section('nav')
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+	<!-- @section('nav') -->
+	<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
 	<a class="navbar-brand" href="#">itp-tunes</a>
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	  <span class="navbar-toggler-icon"></span>
@@ -24,8 +24,37 @@
 	    </li>
 	  </ul>
 	</div>
-	</nav>
-	@show
+	</nav> -->
+	<!-- @show -->
+
+	<div class="container-fluid">
+		<ul class="nav">
+			@if (Auth::check())
+				<li class="nav-item">
+					<a href="/profile" class="nav-link">Profile</a>
+				</li>
+				<li class="nav-item">
+					<a href="/" class="nav-link">Invoices</a>
+				</li>
+				<li class="nav-item">
+					<a href="/logout" class="nav-link">Logout</a>
+				</li>
+				<li class="nav-item">
+					<a href="/settings" class="nav-link">Settings</a>
+				</li>
+			@else
+				<li class="nav-item">
+					<a href="/login" class="nav-link">Login</a>
+				</li>
+				<li class="nav-item">
+					<a href="/signup" class="nav-link">Sign Up</a>
+				</li>
+			@endif
+
+
+		</ul>
+
+	</div>
 
 	<div class="container-fluid">
 		@yield('main')
