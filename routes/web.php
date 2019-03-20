@@ -48,3 +48,5 @@ Route::middleware(['authenticated'])->group(function() {
   Route::get('/settings', 'SettingsController@index');
   Route::post('/settings', 'SettingsController@changeSettings');
 });
+
+Route::get('/docs', 'DocsController@index');
